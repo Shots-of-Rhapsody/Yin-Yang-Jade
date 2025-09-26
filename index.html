@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!--
+    GitHub Pages–compliant single-file home page for a writing website.
+    - No external dependencies (fonts, scripts, images)
+    - Responsive, accessible, SEO-friendly, dark-mode aware
+    - Progressive enhancement: small inline JS for nav + theme toggle
+  -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shots of Rhapsody · Stories by Artaius</title>
+  <meta name="description" content="Original fiction and essays by Artaius. Read The Hour When Rivers Turn and discover new work in a clean, elegant, distraction-free design." />
+  <meta name="theme-color" content="#0b3d3a" />
+  <link rel="canonical" href="https://your-domain.example/" />
+
+  <!-- Open Graph / Twitter Cards -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Shots of Rhapsody · Stories by Artaius" />
+  <meta property="og:description" content="Original fiction and essays by Artaius. Read The Hour When Rivers Turn and discover new work." />
+  <meta property="og:url" content="https://your-domain.example/" />
+  <meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'><rect fill='%230b3d3a' width='100%' height='100%'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='Georgia, serif' font-size='64'>Shots of Rhapsody</text></svg>" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Icons (SVG data URIs keep it self-contained) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b3d3a'/%3E%3Cpath d='M18 44c10-6 18-6 28 0M16 22c6 4 12 4 18 0' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='44' cy='20' r='4' fill='%23fff'/%3E%3C/svg%3E" />
+
+  <!-- Minimal, performant, accessible CSS -->
+  <style>
+    :root {
+      --bg: #0e1514;
+      --bg-elev: #101c1a;
+      --ink: #e8efe9;
+      --muted: #b7c6be;
+      --brand: #00a86b; /* dark jade accent */
+      --brand-2: #56d1b7;
+      --ring: 2px solid color-mix(in oklab, var(--brand) 55%, white 0%);
+      --shadow: 0 8px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+      --maxw: 1120px;
+      --lead: 1.7;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8faf9;
+        --bg-elev: #ffffff;
+        --ink: #0f1514;
+        --muted: #55635b;
+        --brand: #0b8a68;
+        --brand-2: #008f6b;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink);
+      background: radial-gradient(1200px 600px at 70% -20%, rgba(0,168,107,0.15), transparent 60%),
+                  radial-gradient(800px 400px at -10% 10%, rgba(86,209,183,0.12), transparent 60%),
+                  var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: var(--brand-2); text-decoration: none; }
+    a:hover, a:focus-visible { text-decoration: underline; outline: none; }
+    .container { max-width: var(--maxw); margin-inline: auto; padding-inline: 20px; }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute; left: -9999px; top: auto;
+      width: 1px; height: 1px; overflow: hidden;
+    }
+    .skip-link:focus { left: 16px; top: 16px; width: auto; height: auto; padding: 10px 14px; background: var(--bg-elev); border-radius: 8px; outline: var(--ring); }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(1.2) blur(10px);
+      background: color-mix(in oklab, var(--bg) 88%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--ink) 8%, transparent);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0;
+    }
+    .brand {
+      display: inline-flex; gap: 12px; align-items: center; font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .brand-logo {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: conic-gradient(from 120deg, var(--brand), color-mix(in oklab, var(--brand) 60%, var(--brand-2) 40%));
+      box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--ink) 12%, transparent);
+    }
+    .brand small { display:block; font-weight:500; color: var(--muted); line-height: 1; }
+    nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
+    nav a {
+      padding: 8px 10px; border-radius: 10px;
+    }
+    nav a[aria-current="page"] { background: color-mix(in oklab, var(--ink) 10%, transparent); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 14px; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+      background: color-mix(in oklab, var(--bg-elev) 90%, var(--brand) 0%);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.primary {
+      background: linear-gradient(180deg, color-mix(in oklab, var(--brand) 65%, var(--brand-2) 35%), var(--brand));
+      border: none; color: #fff;
+    }
+    .icon-btn { padding: 8px; width: 40px; height: 40px; border-radius: 10px; }
+    .only-mobile { display: none; }
+
+    /* Hero */
+    .hero {
+      padding: 72px 0 40px;
+    }
+    .eyebrow { color: var(--muted); letter-spacing: .18em; text-transform: uppercase; font-size: 12px; }
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 6vw, 56px);
+      line-height: 1.1; margin: 10px 0 16px;
+      text-wrap: balance;
+    }
+    .lead { max-width: 62ch; color: var(--muted); line-height: var(--lead); font-size: 1.05rem; }
+
+    /* Feature card */
+    .feature {
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; margin-top: 36px;
+    }
+    .card {
+      border-radius: var(--radius);
+      background:
+        radial-gradient(800px 300px at 100% 0, rgba(0,168,107,.22), transparent 60%),
+        linear-gradient(180deg, color-mix(in oklab, var(--bg-elev) 94%, transparent), var(--bg-elev));
+      border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+      box-shadow: var(--shadow);
+      padding: clamp(16px, 2.4vw, 28px);
+    }
+    .card h2 { font-family: Georgia, "Times New Roman", serif; margin: 6px 0 8px; font-size: clamp(22px, 3.6vw, 32px); }
+    .meta { color: var(--muted); font-size: .95rem; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+
+    /* Grid of links */
+    .grid { margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .tile {
+      border-radius: 14px; padding: 16px; min-height: 120px;
+      background: linear-gradient(180deg, color-mix(in oklab, var(--bg-elev) 96%, transparent), var(--bg-elev));
+      border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+      position: relative; overflow: hidden;
+    }
+    .tile:hover { outline: var(--ring); }
+    .tile h3 { margin: 2px 0 6px; font-size: 1.05rem; }
+    .tile p { margin: 0; color: var(--muted); font-size: .96rem; }
+    .tag { position: absolute; right: 12px; top: 12px; font-size: .75rem; background: color-mix(in oklab, var(--ink) 10%, transparent); padding: 6px 8px; border-radius: 999px; }
+
+    /* Story section */
+    section { padding: 40px 0; }
+    .section-title { font-family: Georgia, "Times New Roman", serif; font-size: clamp(24px, 4vw, 36px); margin: 10px 0 8px; }
+    .prose {
+      font-size: 1.05rem; line-height: 1.75; max-width: 75ch;
+    }
+    .prose p { margin: 1em 0; }
+    details.story details { margin-left: 1rem; }
+    details.story > summary {
+      cursor: pointer; list-style: none; padding: 14px 16px; border-radius: 12px;
+      background: color-mix(in oklab, var(--ink) 8%, transparent);
+      border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+      user-select: none;
+    }
+    details.story[open] > summary { background: color-mix(in oklab, var(--ink) 12%, transparent); }
+    details.story > summary::-webkit-details-marker { display: none; }
+
+    /* Newsletter */
+    .newsletter form {
+      display: grid; grid-template-columns: 1fr auto; gap: 10px; max-width: 520px;
+    }
+    .input {
+      border-radius: 12px; padding: 12px 14px;
+      border: 1px solid color-mix(in oklab, var(--ink) 14%, transparent);
+      background: var(--bg-elev); color: var(--ink);
+    }
+    .fine { color: var(--muted); font-size: .9rem; }
+
+    /* Footer */
+    footer { border-top: 1px solid color-mix(in oklab, var(--ink) 8%, transparent); padding: 24px 0 48px; color: var(--muted); }
+
+    /* Small screens */
+    @media (max-width: 900px) {
+      .feature { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr 1fr; }
+      .only-mobile { display: inline-flex; }
+      nav ul { display: none; }
+      nav ul.open { display: flex; position: absolute; top: 64px; right: 20px; flex-direction: column; gap: 8px; padding: 12px; background: var(--bg-elev); border-radius: 12px; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); box-shadow: var(--shadow); }
+    }
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* Focus visible */
+    :focus-visible { outline: var(--ring); outline-offset: 2px; }
+  </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Shots of Rhapsody",
+    "url": "https://your-domain.example/",
+    "publisher": {
+      "@type": "Person",
+      "name": "Artaius"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://your-domain.example/#search={query}",
+      "query-input": "required name=query"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header role="banner">
+    <div class="container nav">
+      <a class="brand" href="/" aria-current="page">
+        <span class="brand-logo" aria-hidden="true"></span>
+        <span>Shots of Rhapsody<small>Stories by Artaius</small></span>
+      </a>
+
+      <nav aria-label="Primary">
+        <button class="btn icon-btn only-mobile" id="menuBtn" aria-expanded="false" aria-controls="primaryMenu" title="Menu">☰</button>
+        <ul id="primaryMenu">
+          <li><a href="#stories">Stories</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">🌓</button>
+        <a class="btn primary" href="#stories">Start Reading</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" role="main">
+    <section class="hero container">
+      <div class="eyebrow">Original Fiction</div>
+      <h1>Stories that listen first, then break your heart gently.</h1>
+      <p class="lead">Minimal distractions. Durable prose. A home for time-bending grief, quiet courage, and the strange tenderness of ordinary days.</p>
+
+      <div class="feature">
+        <article class="card" aria-labelledby="feature-title">
+          <div class="eyebrow">Featured</div>
+          <h2 id="feature-title">The Hour When Rivers Turn</h2>
+          <p class="meta">Time travel, love, loss · ~22 min read</p>
+          <p>In a town that mistrusts precision, a clockmaker invents a device that lets him step sideways through time. The river remembers everything. The river forgives nothing.</p>
+          <div class="actions">
+            <a class="btn primary" href="#the-hour-when-rivers-turn">Read the Story</a>
+            <a class="btn" href="#about">About the Author</a>
+          </div>
+        </article>
+
+        <aside class="card" aria-label="Site quick links">
+          <div class="grid" role="list">
+            <a class="tile" role="listitem" href="#stories">
+              <span class="tag">New</span>
+              <h3>Stories</h3>
+              <p>Browse finished work and experiments.</p>
+            </a>
+            <a class="tile" role="listitem" href="#newsletter">
+              <h3>Newsletter</h3>
+              <p>Occasional letters on craft, research, and releases.</p>
+            </a>
+            <a class="tile" role="listitem" href="#about">
+              <h3>About</h3>
+              <p>Who I am, what I write, and why.</p>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="stories" class="container">
+      <h2 class="section-title">Stories</h2>
+      <article id="the-hour-when-rivers-turn" class="prose">
+        <header>
+          <h3>The Hour When Rivers Turn</h3>
+          <p class="meta">By Artaius · Short story</p>
+        </header>
+
+        <details class="story">
+          <summary aria-label="Expand to read">Read full story</summary>
+          <div>
+            <p>The town had a clockmaker who worked in a brick room that never cooled. Heat lay on the rafters like another beam. People brought him tired watches and cracked glass and the occasional pocket heirloom that had survived wars without ever learning to keep decent time. He repaired all of it with a patience that looked like love. Then he went home to the house by the river and sat with a notebook open to a single line: Elara drowned at noon.</p>
+            <p>Elara had been a teacher who let her students drink from a metal water pitcher in the afternoon. The children liked the clink of tin cups. She had a voice that turned instructions into a kind of shelter. She was one of those people who live as if the world is a fragile instrument, easily knocked sharp. When the flood came, she waded into the schoolyard with the tall stick they used to measure snow. She wanted to count how fast the river was climbing the steps. She wanted the students to know that numbers were not an enemy. Somewhere in the panic and brown water she vanished. They found the stick, later, wedged into the fence like a bookmark.</p>
+            <p>The clockmaker’s name was Tomas. It is not important to the town any longer. To me it is everything, because I loved him, and because he would not stop counting the seconds between all things, even after the seconds turned into a room he could not leave.</p>
+            <p>He believed time would open if addressed with the right grammar. Not a grammar of machines. A grammar of amends. He sold the old watches at a loss and hoarded the gears. He looked for something small enough to tell the truth and sturdy enough not to panic when truth arrived.</p>
+            <p>It took him a year to build the prototype. In that time spring went twice across the river, the first time early and the second time late, as if it could not decide what it remembered. He worked by lamplight and wrote notes in the margins of a manual on horology that had belonged to his father. He called his device a reticle, because it looked like an instrument for lining up a shot you would regret forever. It fit in his palm. Brass ring, three nested dials, a window of smoky glass where the hours moved like fog on black water.</p>
+            <p>The reticle did not travel itself. It allowed a person to step across the hinge of a moment if he could name the hinge correctly. That was the grammar: person, hour, cost. He learned that last word too late, though it was written inside everything he made.</p>
+            <p>The first time he used it he named the hinge with a whisper. Elara in the schoolyard. Noon divided by the width of her hand. He did not step backward. He did not step forward. He stepped sideways, into the white corridor of noon where light forgets to throw shadows. Everything held its breath. He feared that she would turn and he would start sobbing and ruin whatever rule governed this corridor. She did not turn. The reticle hummed like a small trapped animal.</p>
+            <p>He could not touch her. That was the rule the reticle discovered for him. He could move a pebble. A leaf. He could scream, and the scream would become wind. He could lay a plank on the steps and her foot would find surer purchase than before. He could throw the measuring stick and it would turn like a spear and lodge in a fence instead of sliding under a truck. He could not put his hand on the back of her head and say do not go.</p>
+            <p>She lived that day. Or rather she lived, and the version of her who drowned became a rumor that the river told when the banks fell quiet. The students grew up into a town of people who had seen a teacher take attendance during an emergency. They did not become kinder. The world did not change its inclination toward cruelty. But Elara came home with mud on her shoes and a headache and a complaint that the clock in the school was wrong.</p>
+            <p>Tomas came home to a house that did not know him. Elara smiled and thanked him for bringing her the plank. He was a stranger who had been ordinary and then not. She gave him the look a person reserves for the person they will thank once in their life. He knew the look because he had once given it to a doctor in a hallway. Gratitude passed through him and left a vacant seat.</p>
+            <p>He walked out into the evening and sat on the river steps and watched the current braid itself. A boy on a bicycle nearly fell into him. The boy swerved, cursed, and laughed. Life leaped over him, lightly.</p>
+            <p>He returned to the clock shop, which kept his name on the lettered glass but did not keep the coffee mug he remembered. In this arrangement of events, he had not loved Elara before noon. He had loved her afterward, which meant he had loved her as a stranger. The reticle lay warm on his palm and asked a question without words. What now.</p>
+            <p>Tomas began to use the reticle in small ways. He would move a chair two inches so an old man would not catch his shoe on it and fall. He would nudge a bottle before it shattered in a kitchen. He would place a matchbox on the table where a woman would see it and remember that fire is a decision. He learned that the cost was not always a memory erased, though that happened. Sometimes the cost was simpler: a meal he had been about to enjoy tasted like dust. A joke that once made him laugh put him on edge. He kept going because this was his grammar, and because the alternative was pretending to have hands only to hold coins.</p>
+            <p>He tried to stay away from Elara. He failed. People fail in the direction of love. They do it in slow increments that look like accidents. He visited the school to fix the clock and saw the pitcher of water, the children with their tin cups. He found her in the yard with a string of paper kites. She was teaching them to measure wind with their own bodies. He wanted to tell her he was her husband from a different noon. He brought her a small, repaired watch instead. She took it and said, kindly, that a person is not late if the person the time belongs to will wait.</p>
+            <p>After that they did ordinary things for a while. Which is to say they did the most miraculous things. They put eyes on each other like sailors sighting a trusted shoreline after bad seas. They ruined a stew and ate it anyway. They argued over how much sugar tea should hold. They lay awake in summer and listened to the neighbor’s radio hissing out rain. He did not tell her about the reticle. He told himself he was sparing her the fear of living with a person who worked in secret corridors. The truth was smaller and less noble. He was afraid she would ask him to stop, and he would find that he could not obey.</p>
+            <p>In the second winter his father died in a grown child’s way, by running out of his last quiets. Tomas tried to step sideways to place the reticle’s silk between his father and the stopping. He could not. There are doors built of names and doors built of weather and doors built of bodies; a door built of a life is not a door at all. The corridor he found was short and unfurnished. He spent it sitting beside his father’s bed, saying nothing. The reticle vibrated against his wrist and then cooled. Grief is not a hinge. Grief is the house after the hinge.</p>
+            <p>After the funeral he told Elara the whole story, because to hide it now would be a theft. She listened, elbow on the table, mouth tight. Her hand was on the repaired watch. He thought she would say he had done a terrible wrong to the symmetry of things. She said something else.</p>
+            <p>“Love is a problem when it pretends not to be a problem,” she said. “You have been taking responsibility for riverbanks.”</p>
+            <p>“The river took you,” he said.</p>
+            <p>“The river will take me again,” she said. “Whether by water or by year. Your machine does not change the sentence. It drags out the clause.”</p>
+            <p>They went on for a while, two people with a grammar problem so complex that the answer would always be an approximation. They tried not to be careless. They were human. Some days there were dishes in the sink and anger inside the dishes. Some days there was joy so light-footed he wanted to ask it to sit down before it drifted into the rafters and evaporated. He used the reticle once more that winter to keep a child from stepping in front of a bus. He paid for it with the loss of a story his father had told about a kite. He felt the hollow where the story had lived, a small dim room.</p>
+            <p>In spring the river rose. Not dramatically. Not the biblical satisfaction of news footage and disaster. It rose like an argument that has finally found its words. Elara walked near it with a basket of chalk for the children to draw the flood lines and the city’s humming went deeper. Tomas carried the reticle without thinking of it, the way a person carries a talisman they pretend to have forgotten. He watched her from the bridge. He thought of their life as a sheet left to dry on a thorn bush.</p>
+            <p>A boy slipped on the stairs and a girl grabbed him and the chalk fell and the chalk rolled into the water and the chalk drew a white line on the river like a sentence underlined too late. Elara called out and stepped forward and Tomas saw it again, the old noon behind the new one. He could not tell if it was memory or prophecy. He stepped sideways.</p>
+            <p>The corridor was not white this time. It was a dull green. It smelled like old coins. There were doors on each side with numbers where names might have been. The reticle was very quiet. He did not stop to be afraid. He moved. He placed a board. He dropped a rope. He put his hand in the air where Elara’s back would travel and he discovered again that love cannot be caught like a vase. The child did not fall. Elara did not drown. He felt the corridor gathering itself in a fist.</p>
+            <p>He returned to a world that had learned a new rule. For every life pulled from the seam, something else fell through a new seam in a different room. The town’s newspaper did not use the word exchange. It used the word plague, because language flails when it does not like the mirror. Accidents multiplied in improbable places. A ladder that had not yet been built broke. A woman named Suri woke in the night with the taste of river water in her lungs and never tasted air again. The town filled with funerals that did not match the bodies. It took a month for Tomas to accept that the cost had grown teeth.</p>
+            <p>He told Elara. He should have told her sooner. She listened and did not touch the watch. The school closed for a week to count the chalk. When she finally spoke she did not ask for permission to be brave.</p>
+            <p>“You have to stop,” she said. “There is no other grammar left to us.”</p>
+            <p>“I will stop,” he said, meaning it, and then he did not stop, because the reticle had become a way to place his hands on the world. He had not been able to place them on his father’s breath. He had lost the kite story. He had learned that someone else was paying for the days he had gained. He kept thinking there must be a better sentence.</p>
+            <p>At night he dreamed of a river running backward. In the morning a girl came to the shop to ask if he could fix a music box that played someone else’s grief. He fixed it. He watched her walk away and put his head down on the counter and tried to breathe without counting.</p>
+            <p>There are moments when a decision makes you. He had one of those in late summer. A bus’s brakes failed on the hill above the market. He saw the bus and he saw the fruit stalls and Elara buying peaches and he saw the reticle like a lit match inside his pocket. He stepped sideways into a corridor that felt like a throat. He pulled a cart into the bus’s path. He shifted weight. He drove a nail into the road as if the world were made of wood. The bus swerved and crashed into the stone wall by the tailor. People screamed and then stopped screaming to count themselves.</p>
+            <p>Elara was unhurt. A tailor’s apprentice died with a needle still in his teeth. Suri’s mother, who had been the loudest at the funerals, closed her eyes and put her hand over her mouth and made a sound like when you bend a spoon too far. Tomas stood very still and tried to be empty. Elara found him in the doorway of the shop later, wet with sweat, and put her hand on his sleeve. The watch on her wrist ticked as if it were walking away.</p>
+            <p>“I cannot ask you to live with this,” she said. “I cannot ask myself to live with you living with this.”</p>
+            <p>He thought he had prepared for every sentence. He had not prepared for this one.</p>
+            <p>They separated without theater. There were no slammed doors. She packed a bag with discipline. He watched her take the pitcher. He let her go because possession would be a crime that even the corridors would not forgive. The house became smaller. He slept in the chair until his back was a list of wrong angles. He managed the shop as if it were an apology. He stood on the bridge at dusk and did not step sideways.</p>
+            <p>A month later he opened the notebook to the first page and wrote nothing. He had planned to write Elara drowned at noon. He did not. He closed the book and took the reticle to the river. Water is an argument that does not hear you. He held the brass ring over the current and pictured his father’s hands. He pictured the chalk line. He pictured the invisible arithmetic of the exchange. He pictured the apprentice with the needle between his teeth. He let the reticle drop.</p>
+            <p>It did not sink. It turned and turned and caught the last light and drifted like a coin on the surface of an old debt. Then it vanished in a coil of water. He walked home in a straight line.</p>
+            <p>There is no repair that turns grief into furniture. There is no sentence that finishes it cleanly. Tomorrows returned, a fact as dull as bread. Winter again. He bought a new notebook and wrote times when the river was quiet. He went to the school in spring to adjust the clock and found, in a cupboard, the measuring stick he had thrown long ago. He held it and felt nothing mystical. Time had run its thumb over the grain and smoothed it.</p>
+            <p>Elara visited once more. She stood in the shop and asked for the watch to be cleaned. They spoke like people who had been married in a different grammar and would now be neighbors. She laughed at a small joke about screws. He watched her mouth and found that his heart had learned to remake itself from fewer parts.</p>
+            <p>He never told anyone about the reticle again. He did not step sideways. He did something harder. He stayed. He counted the seconds, not to command them, but to hear how they sounded when left alone. People died. Babies cried in the night and then grew teeth. The river rose precisely out of season and the town moved its furniture. Everyone called it strange. Everyone kept living.</p>
+            <p>Years later, when Tomas was a very old man with a face that looked like the underside of the rafters, a child brought him a watch that had no hands. The child said it belonged to his grandmother’s friend, Suri, the one who had drowned without water. Tomas held the watch and felt the past open like a cupboard and then close again. He could not fix a handless watch. He told the child the truth.</p>
+            <p>“What good is it if it cannot tell the time,” the child asked.</p>
+            <p>“It can listen,” Tomas said. “Sometimes you need an instrument that can listen.”</p>
+            <p>He returned the watch. He closed the shop for the evening. He walked to the river and stood on the steps where people brought their dirty shoes to negotiate with the water. The marks of old floods were cut into the stone like lines a doctor might draw before surgery. He did not step between them. He stood in the exact hour that belonged to him and let it be unfinished.</p>
+            <p>On the bridge a bicycle bell rang. In some houses a radio coughed up weather. In the schoolyard someone had drawn a chalk ladder without rungs. The sun went down in a way that looked ordinary until you noticed that every ordinary thing is an event the world pulls off without rehearsal.</p>
+            <p>There is no twist here. No lesson meant to stitch up what cannot be stitched. A man wanted to save the person he loved. He learned that saving is not a verb that answers to intention. He learned that love keeps living even after you set the instrument down. He learned to hear time without asking it to explain itself.</p>
+            <p>Some nights, this still hurts him. On those nights he gets up, sits by the window, and imagines the reticle turning in the dark water, far from his house, far from any house, turning as if it has nothing left to decide. He imagines it listening. He imagines the river remembering nothing of him, remembering only its long, simple work: to run, to move, to arrive everywhere and never be finished.</p>
+          </div>
+        </details>
+      </article>
+    </section>
+
+    <section id="about" class="container">
+      <h2 class="section-title">About</h2>
+      <p class="prose">I write fiction that threads philosophy through lived texture: clocks and flood lines, grief’s arithmetic, the grace of small repairs. The site is designed to stay out of the way—fast, legible, and hospitable on any device.</p>
+    </section>
+
+    <section id="newsletter" class="container newsletter">
+      <h2 class="section-title">Newsletter</h2>
+      <p class="prose">Occasional letters on process and new releases. No spam. Unsubscribe anytime.</p>
+      <form action="mailto:you@example.com" method="post" enctype="text/plain" aria-label="Subscribe via email">
+        <label class="visually-hidden" for="email">Email</label>
+        <input class="input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@domain.com" required />
+        <button class="btn primary" type="submit">Request Invite</button>
+      </form>
+      <p class="fine" style="margin-top:8px;">This form opens your email client to send a subscribe request—fully GitHub Pages–compatible.</p>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+        <small>© <span id="year"></span> Artaius · All rights reserved</small>
+        <small><a href="#top" aria-label="Back to top">Back to top ↑</a></small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Tiny, optional JS (no external dependencies) -->
+  <script>
+    // Nav toggle for small screens
+    const menuBtn = document.getElementById('menuBtn');
+    const primaryMenu = document.getElementById('primaryMenu');
+    if (menuBtn && primaryMenu) {
+      menuBtn.addEventListener('click', () => {
+        const open = primaryMenu.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
+      });
+    }
+
+    // Theme toggle: respects prefers-color-scheme; lets user flip without storing state.
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn?.addEventListener('click', () => {
+      const light = document.documentElement.dataset.theme === 'light';
+      document.documentElement.dataset.theme = light ? 'dark' : 'light';
+      // Swap variables by toggling a root attribute
+      if (!document.getElementById('themeStyle')) {
+        const s = document.createElement('style'); s.id = 'themeStyle';
+        s.textContent = `
+          :root[data-theme="light"] {
+            --bg: #f8faf9; --bg-elev:#ffffff; --ink:#0f1514; --muted:#55635b;
+            --brand:#0b8a68; --brand-2:#008f6b;
+          }
+          :root[data-theme="dark"] {
+            --bg:#0e1514; --bg-elev:#101c1a; --ink:#e8efe9; --muted:#b7c6be;
+            --brand:#00a86b; --brand-2:#56d1b7;
+          }`;
+        document.head.appendChild(s);
+      }
+    });
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Accessibility nicety: close mobile menu on outside click
+    document.addEventListener('click', (e) => {
+      if (primaryMenu?.classList.contains('open') && !primaryMenu.contains(e.target) && e.target !== menuBtn) {
+        primaryMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+
+  <!-- Visually hidden utility -->
+  <style>
+    .visually-hidden {
+      position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0, 0, 0, 0); white-space:nowrap; border:0;
+    }
+  </style>
+</body>
+</html>
