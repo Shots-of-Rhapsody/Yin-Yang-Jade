@@ -1,0 +1,18 @@
+---
+layout: base
+permalink: /
+---
+<h2>Latest Stories</h2>
+<ul class="story-grid">
+{%- for post in collections.stories | slice(0, 12) -%}
+<li class="story-card">
+<a class="card-link" href="{{ post.url }}">
+<div class="content">
+<h3>{{ post.data.title }}</h3>
+<p class="excerpt">{{ post.data.excerpt }}</p>
+<p class="meta">{{ post.date | date('LLL d, yyyy') }}</p>
+</div>
+</a>
+</li>
+{%- endfor -%}
+</ul>

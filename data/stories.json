@@ -1,0 +1,20 @@
+[
+{
+"slug": "the-hour-when-rivers-turn",
+"title": "The Hour When Rivers Turn",
+"date": "2025-09-25",
+"excerpt": "A clockmaker keeps time against a river that refuses to forget.",
+"tags": ["time travel", "loss", "river"],
+"cover": "assets/images/rivers-cover.jpg",
+"file": "stories/the-hour-when-rivers-turn.md"
+},
+{
+"slug": "the-empty-blue-sweater",
+"title": "The Empty Blue Sweater",
+"date": "2025-08-12",
+"excerpt": "Two voices inventory a home that remembers more than they do.",
+"tags": ["memory", "dialogue"],
+"cover": "assets/images/blue-sweater.jpg",
+"file": "stories/example-second-story.md"
+}
+]
